@@ -1,0 +1,38 @@
+<% layout('/layouts/boilerplate') %>
+<body>
+    <div class="row new-main">
+        <div class="col-10 offset-1"><!-- Form will be in center and will take space of 8 columns -->
+    <h2>Create New Listing</h2><br>
+    <form method="POST" action="/listings">
+        <div class="mb-3"> <!-- To get bottom of margin 3 -->
+            <lable for="title" class="form-label">Title</lable>
+            <input class="form-control" type="text" name="listing[title]" placeholder="Enter title"><br>
+            <!-- Creating object key value pairs for all fields -->
+        </div>
+        <div class="mb-3">
+            <lable for="description" class="form-label">Description</lable>
+            <textarea class="form-control" type="text" rows="5" cols="30" name="listing[description]" placeholder="Enter description"></textarea><br>
+        </div>
+        <div class="mb-3">
+            <lable for="image" class="form-label">Image</lable>
+            <input class="form-control" type="text" name="listing[image]" placeholder="Enter image URL"><br>
+        </div>
+        <div class="row"> <!-- So that Price & Country will be in same line -->
+        <div class="mb-3 col-md-4"> <!-- Price will take space of 4 columns until screens size is md or lg -->
+            <lable for="price" class="form-label">Price</lable>
+            <input class="form-control" type="number" name="listing[price]" placeholder="Enter price"><br>
+        </div>
+        <div class="mb-3 col-md-8"> <!-- Country will take space of 8 columns until screens size is md or lg -->
+            <lable for="country" class="form-label">Country</lable>
+            <input class="form-control" type="text"name="listing[country]" placeholder="Enter country "><br>
+        </div>
+        </div>
+        <div class="mb-3">
+            <lable for="location" class="form-label">Location</lable>
+            <input class="form-control" type="text"name="listing[location]" placeholder="Enter location"><br>
+        </div>
+        <button class="btn btn-primary">Submit</button>
+    </form>
+        </div>
+    </div>
+</body>
