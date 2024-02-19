@@ -1,0 +1,210 @@
+body{
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container{
+    flex: 1;
+} /* Above code is used so that our footer sticks to the bottom of our page */
+
+.heading{
+    font-size: 3rem;
+    font-weight: bolder;
+    color: #f5168d;
+}
+
+/* Navbar */
+.navbar{
+    height: 4rem;
+    background-color: #fff !important;
+}
+.navbar-nav{
+    background-color: #fff !important;
+}
+.navbar-nav a{
+    margin-right: 2rem !important;
+    position: relative;
+}
+.navbar-nav a:hover{
+    scale: 1.2;
+    transition: 0.2s;
+}
+.navbar-nav a::before{
+    content: '';
+    position: absolute;
+    left: 5px;
+    bottom: 0;
+    width: 0%;
+    height: 3px;
+    background-color: rgb(255, 0, 93);
+    transition: 0.4s;
+}
+.navbar-nav a:hover::before{
+    width: 90%;
+}
+.navbar-brand i{
+    color: #f5168d;
+    font-size: 2.5rem;
+    margin-left: 1.5rem;
+    margin-right: 3rem;
+}
+.navbar-brand i:hover{
+    scale: 1.2;
+    transition: 0.2s;
+    opacity: 0.9;
+}
+.nav-link{
+    color: black !important; /* So that custom styling can override Bootstrap Styling */
+    margin-bottom: 0;
+}
+.search-bar{
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-left: 30rem !important;
+}
+.search-bar button {
+  background-color: #f5168d;
+  color: #fff;
+  font-weight: 500;
+  width: 2.5rem;
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
+}
+.search-bar button:hover{
+    opacity: 0.9;
+}
+.search-bar .btn i{
+    color: #fff;
+}
+
+/* Footer */
+.f-info{
+    height: 6rem;
+    background-color: #fff;
+    display: flex; /* Everything will be in Same line */
+    flex-wrap: wrap; /* Everything will be in different lines */
+    justify-content: center;
+    align-items: space-evenly;
+    text-align: center; /* Everything will be in center */
+}
+.f-info-social, .f-info-links, .f-info-brand{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.f-info-social i{
+    font-size: 1.7rem;
+    margin-right: 1.5rem;
+    cursor: pointer;
+}
+.f-info-social i:nth-child(1){
+    color: #FF0000;  
+}
+.f-info-social i:nth-child(2){
+    color: #316FF6;
+    background-color: #fff;
+}
+.f-info-social i:nth-child(3){
+    color: rgb(10, 102, 194);
+    background-color: #fff;
+}
+.f-info-social i:hover{
+    scale: 1.1;
+    opacity: 0.8;
+}
+.f-info-links a, .f-info-brand a{
+    text-decoration: none;
+    color: #222222;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+.f-info-links a:hover, .f-info-brand a:hover{
+    text-decoration: underline;
+    color: #222222;
+}
+
+/* Index Page */
+.card{
+    border: none !important;
+    margin-bottom: 2.5rem;
+}
+.card-img-top{
+    border-radius: 0.8rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+.card-body{
+    padding: 0.5rem !important;
+}
+.card-text{
+    font-weight: 400 !important;
+}
+.img-listing:hover{
+    opacity: 0.5;
+}
+.card-body a:hover{
+    transform: translateX(8px);
+    transition: 0.2s ease;
+}
+.new-btn button{
+    width: 12rem;
+    height: 3rem;
+    border: 1px solid;
+    color: #fff;
+    background-color: #f5168d;
+    margin-left: 40%;
+    margin-bottom: 2%;
+    border-radius: 30px;
+}
+.new-btn button:hover{
+    color: #fff;
+    transform: translateX(8px);
+    transition: 0.2s ease;
+    opacity: 0.9;
+}
+
+/* Edit Page */
+.edit-main{
+    margin-top: 2rem !important;
+    margin-bottom: 3rem !important;
+}
+
+/* New Page */
+.new-main{
+    margin-top: 2rem !important;
+    margin-bottom: 3rem !important;
+}
+
+/* Show Page */
+.show-main{
+    margin-top: 2rem !important;
+    margin-bottom: 3rem !important;
+}
+.show-img{
+    height: 40vh;
+}
+.show-card{
+    padding-left: 0;
+    padding-right: 0;
+}
+.btns{
+    display: flex;
+}
+
+/* Home page */
+.home-img{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* to ensure it's behind other content */
+}
+.home-img img{
+    width: 100%;
+}
