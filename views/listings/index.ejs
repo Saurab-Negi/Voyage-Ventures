@@ -5,7 +5,7 @@
       <!-- For large nd medium size there will be minimum 3 & 2 cards respectively in a row & for small only 1 card -->
       <% for(let listing of allListings){ %> <!-- Cards will be created as the for loop runs -->
         
-          <div class="card col"> <!-- Card col: So that all cards will be shown in 1 row in the form of column -->
+          <div class="card listing-card col"> <!-- Card col: So that all cards will be shown in 1 row in the form of column -->
             <a class="img-listing" href="/listings/<%= listing._id %>"><img src="<%= listing.image %>" class="card-img-top" 
               alt="listing_image" style="height: 20rem"></a> 
             <!-- On image click we will be redirected to show.ejs --> <!-- height: 20rem=> Cards will be of same height -->
@@ -22,7 +22,7 @@
     </div>
     <div class="new-btn">
     <form method="GET" action="/listings/new">
-        <button class="btn">Create New Listings</button>
+        <button>Create New Listings</button>
     </form>
     </div>
 </body>

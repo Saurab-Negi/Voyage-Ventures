@@ -3,33 +3,42 @@
     <div class="row new-main">
         <div class="col-10 offset-1"><!-- Form will be in center and will take space of 8 columns -->
     <h2>Create New Listing</h2><br>
-    <form method="POST" action="/listings">
+    <form method="POST" action="/listings" class="needs-validation" novalidate>
+        <!-- novalidate: To remove browser's default validation
+            class="needs-validation": To add bootstrap validation styling -->
         <div class="mb-3"> <!-- To get bottom of margin 3 -->
             <lable for="title" class="form-label">Title</lable>
-            <input class="form-control" type="text" name="listing[title]" placeholder="Enter title"><br>
+            <input class="form-control" type="text" name="listing[title]" placeholder="Enter title" required><br>
             <!-- Creating object key value pairs for all fields -->
+            <div class="valid-feedback">Title looks good</div>
+            <!-- Bootstrap class to add valid/invalid feedback in form -->
         </div>
         <div class="mb-3">
             <lable for="description" class="form-label">Description</lable>
-            <textarea class="form-control" type="text" rows="5" cols="30" name="listing[description]" placeholder="Enter description"></textarea><br>
+            <textarea class="form-control" type="text" rows="5" cols="30" name="listing[description]" placeholder="Enter description" required></textarea><br>
+            <div class="invalid-feedback">Description shouldn't be more than 100 words</div>
         </div>
         <div class="mb-3">
             <lable for="image" class="form-label">Image</lable>
-            <input class="form-control" type="text" name="listing[image]" placeholder="Enter image URL"><br>
+            <input class="form-control" type="text" name="listing[image]" placeholder="Enter image URL" required><br>
+            <div class="invalid-feedback">Image url should be valid</div>
         </div>
         <div class="row"> <!-- So that Price & Country will be in same line -->
         <div class="mb-3 col-md-4"> <!-- Price will take space of 4 columns until screens size is md or lg -->
             <lable for="price" class="form-label">Price</lable>
-            <input class="form-control" type="number" name="listing[price]" placeholder="Enter price"><br>
+            <input class="form-control" type="number" name="listing[price]" placeholder="Enter price" required><br>
+            <div class="invalid-feedback">Price should be valid</div>
         </div>
         <div class="mb-3 col-md-8"> <!-- Country will take space of 8 columns until screens size is md or lg -->
             <lable for="country" class="form-label">Country</lable>
-            <input class="form-control" type="text"name="listing[country]" placeholder="Enter country "><br>
+            <input class="form-control" type="text"name="listing[country]" placeholder="Enter country" required><br>
+            <div class="invalid-feedback">Country should be valid</div>
         </div>
         </div>
         <div class="mb-3">
             <lable for="location" class="form-label">Location</lable>
-            <input class="form-control" type="text"name="listing[location]" placeholder="Enter location"><br>
+            <input class="form-control" type="text"name="listing[location]" placeholder="Enter location" required><br>
+            <div class="invalid-feedback">location should be valid</div>
         </div>
         <button class="btn btn-primary">Submit</button>
     </form>

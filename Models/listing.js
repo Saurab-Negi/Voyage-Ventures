@@ -2,28 +2,24 @@ const mongoose= require("mongoose");
 const Schema= mongoose.Schema;
 
 const listingSchema= new Schema({
-    title: {type: String,required: true},
+    title: {type: String, required: true},
     description: String,
     image: {
         type: String,
-        default: "https://unsplash.com/photos/yellow-wooden-house-on-body-of-water-surrounded-with-trees-L8Q0cd7bQ0U",
-        set: function(v) {
-            // Check if the provided value is an object
-            if (typeof v === 'object' && v !== null && v.url) {
-                // If it's an object with a URL property, return the URL
-                return v.url;
-            } else if (v === "") {
-                // If it's an empty string, set the default image
-                return "https://unsplash.com/photos/yellow-wooden-house-on-body-of-water-surrounded-with-trees-L8Q0cd7bQ0U";
-            } else {
-                // Otherwise, return the provided string value
-                return v;
-            }
-        }
-    },
+        default:"https://images.unsplash.com/photo-1625505826533-5c80aca7d157?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGdvYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+        set: (v) => v === "" // If it's an empty string, set the default image
+            ? "https://images.unsplash.com/photo-1625505826533-5c80aca7d157?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGdvYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"
+            : v, // Otherwise, return the provided string value
+      },
     price: Number,
     location: String,
     country: String,
+    reviews: [
+        {
+            type: Schema.Types.ObjectId, //To store objectID's of all reviews
+            ref: "Review", //Review model will be used as reference
+        }
+    ]
 });
 const Listing= mongoose.model("Listing", listingSchema);
 module.exports= Listing;
