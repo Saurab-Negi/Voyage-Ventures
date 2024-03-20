@@ -9,6 +9,7 @@ const wrapAsync= require("./Utils/wrapAsync");
 const ExpressError= require("./Utils/ExpressError");
 const {listingSchema, reviewSchema}= require("./schema");
 const Review= require("./Models/review");
+const listings= require("./routes/listing");
 
 const MONGO_URL="mongodb://127.0.0.1:27017/VoyageVentures";
 
@@ -31,18 +32,6 @@ app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate); //use ejs-locals for all ejs templates:
 app.use(express.static(path.join(__dirname,"/public"))); //To use static files(which are used everywhere in the page)
 
-//Schema validation using middleware
-const validateListing= (req, res, next) =>{
-    let {error}= listingSchema.validate(req.body); //using joi for schema validation
-    if(error){
-        let errMsg= error.details.map((el) => el.message).join(",");
-        throw new ExpressError(400, errMsg);
-    }
-    else{
-        next();
-    }
-}
-
 const validateReview= (req, res, next) =>{
     let {error}= reviewSchema.validate(req.body);
     if(error){
@@ -59,54 +48,7 @@ app.get("/", async (req, res) =>{
     res.render("listings/home.ejs");
 })
 
-//Index Route
-app.get("/listings", wrapAsync(async (req,res) =>{
-    const allListings=  await Listing.find({});
-    res.render("listings/index.ejs",{allListings});
-}))
-
-//New Route
-app.get("/listings/new", (req,res) =>{
-    res.render("listings/new.ejs");
-})
-
-//Show Route
-app.get("/listings/:id", wrapAsync(async (req,res) =>{
-    let {id}= req.params;
-    const listing= await Listing.findById(id).populate("reviews");
-    res.render("listings/show.ejs", {listing});
-}))   
-
-//Create Route
-app.post("/listings", validateListing ,wrapAsync(async (req,res,next) =>{ //wrapAsync: It is another way to write try-catch function
-    //calling validateListing middleware
-    const newListing= new Listing(req.body.listing);
-        await newListing.save();
-        res.redirect("/listings");
-    })
-);
- 
-//Edit Route
-app.get("/listings/:id/edit", validateListing ,wrapAsync(async (req,res) =>{
-    let {id}= req.params;
-    const listing= await Listing.findById(id);
-    res.render("listings/edit.ejs", {listing}); 
-}))
-
-//Update Route
-app.put("/listings/:id", wrapAsync(async (req,res) =>{
-    let {id}= req.params;
-    await Listing.findByIdAndUpdate(id, {...req.body.listing}); //Deconstructing into individual values
-    res.redirect(`/listings/${id}`);
-}))
-
-//Delete Route
-app.delete("/listings/:id", wrapAsync(async (req,res) =>{
-    let {id}= req.params;
-    let deletedListing= await Listing.findByIdAndDelete(id);
-    console.log(deletedListing);
-    res.redirect("/listings");
-}))
+app.use("/listings", listings);
 
 //Reviews Route: POST no need to create index route and show route
 app.post("/listings/:id/reviews", validateReview, wrapAsync(async (req, res) =>{
