@@ -1,15 +1,13 @@
 const express= require("express");
 const app= express();
 const mongoose= require("mongoose");
-const Listing= require("./Models/listing");
 const path= require("path");
 const methodOverride= require("method-override")
 const ejsMate= require("ejs-mate"); //It helps to create templates and layouts
-const wrapAsync= require("./Utils/wrapAsync");
 const ExpressError= require("./Utils/ExpressError");
-const {listingSchema, reviewSchema}= require("./schema");
 const Review= require("./Models/review");
 const listings= require("./routes/listing");
+const reviews= require("./routes/review");
 
 const MONGO_URL="mongodb://127.0.0.1:27017/VoyageVentures";
 
@@ -32,41 +30,13 @@ app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate); //use ejs-locals for all ejs templates:
 app.use(express.static(path.join(__dirname,"/public"))); //To use static files(which are used everywhere in the page)
 
-const validateReview= (req, res, next) =>{
-    let {error}= reviewSchema.validate(req.body);
-    if(error){
-        let errMsg= error.details.map((el) => el.message).join(",");
-        throw new ExpressError(400, errMsg);
-    }
-    else{
-        next();
-    }
-}
-
 //Home Route
 app.get("/", async (req, res) =>{
     res.render("listings/home.ejs");
 })
 
 app.use("/listings", listings);
-
-//Reviews Route: POST no need to create index route and show route
-app.post("/listings/:id/reviews", validateReview, wrapAsync(async (req, res) =>{
-    let listing= await Listing.findById(req.params.id);
-    let newReview= new Review(req.body.review);
-    listing.reviews.push(newReview);
-    await newReview.save();
-    await listing.save();
-    res.redirect(`/listings/${listing._id}`);
-}))
-
-//Delete Reviews Route
-app.delete("/listings/:id/reviews/:reviewId", wrapAsync(async (req, res) =>{
-    let { id, reviewId }= req.params;
-    await Listing.findByIdAndUpdate(id, {$pull: {reviews: reviewId}}); //The reviewId which is matched to the review in reviews array will be removed 
-    await Review.findByIdAndDelete(reviewId);
-    res.redirect(`/listings/${id}`);
-}))
+app.use("/listings/:id/reviews", reviews);
 
 app.all("*", (req, res, next) =>{ // If the req doesn't match the above routes
     next(new ExpressError(404,"Page Not Found"));
