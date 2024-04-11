@@ -41,8 +41,7 @@ router.post("/", validateListing ,wrapAsync(async (req,res,next) =>{ //wrapAsync
     const newListing= new Listing(req.body.listing);
         await newListing.save();
         res.redirect("/listings");
-    })
-);
+}))
  
 //Edit Route
 router.get("/:id/edit", validateListing ,wrapAsync(async (req,res) =>{

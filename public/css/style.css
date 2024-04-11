@@ -83,13 +83,15 @@ body{
 
 /* Footer */
 .f-info{
-    height: 6rem;
+    height: 8rem;
     background-color: #fff;
     display: flex; /* Everything will be in Same line */
     flex-wrap: wrap; /* Everything will be in different lines */
     justify-content: center;
     align-items: space-evenly;
     text-align: center; /* Everything will be in center */
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 .f-info-social, .f-info-links, .f-info-brand{
     width: 100%;
@@ -193,18 +195,16 @@ body{
     padding-right: 0;
 }
 .btns{
+    margin: 5rem;
     display: flex;
+    flex-direction: column;
+    justify-content:center
 }
 
 /* Home page */
 .home-img{
     position: sticky;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     z-index: -1; /* to ensure it's behind other content */
-}
-.home-img img{
-    width: 100%;
 }

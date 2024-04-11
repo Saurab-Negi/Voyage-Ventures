@@ -19,10 +19,10 @@
             </div>
             
             <div class="btns">
-                    <a href="/listings/<%= listing._id %>/edit" class="btn btn-primary col-md-1 offset-3 edit-btn">Edit </a>
+                    <a href="/listings/<%= listing._id %>/edit" class="btn btn-primary edit-btn">Edit </a><br>
 
                     <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-                        <button class="btn btn-primary offset-5 edit">Delete</button>
+                        <button class="btn btn-primary edit">Delete</button>
                     </form>
             </div>
             
