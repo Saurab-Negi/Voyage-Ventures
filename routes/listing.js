@@ -44,14 +44,14 @@ router.post("/", validateListing ,wrapAsync(async (req,res,next) =>{ //wrapAsync
 }))
  
 //Edit Route
-router.get("/:id/edit", validateListing ,wrapAsync(async (req,res) =>{
+router.get("/:id/edit", wrapAsync(async (req,res) =>{
     let {id}= req.params;
     const listing= await Listing.findById(id);
     res.render("listings/edit.ejs", {listing}); 
 }))
 
 //Update Route
-router.put("/:id", wrapAsync(async (req,res) =>{
+router.put("/:id", validateListing, wrapAsync(async (req,res) =>{
     let {id}= req.params;
     await Listing.findByIdAndUpdate(id, {...req.body.listing}); //Deconstructing into individual values
     res.redirect(`/listings/${id}`);
