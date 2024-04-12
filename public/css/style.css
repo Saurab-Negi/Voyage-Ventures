@@ -10,8 +10,8 @@ body{
 
 .heading{
     font-size: 3rem;
-    font-weight: bolder;
-    color: #f5168d;
+    font-weight: 500;
+    color: #313131;
 }
 
 /* Navbar */
@@ -147,10 +147,8 @@ body{
     font-weight: 400 !important;
 }
 .img-listing:hover{
-    opacity: 0.5;
-}
-.card-body a:hover{
-    transform: translateX(8px);
+    opacity: 0.7;
+    transform: translateY(-10px);
     transition: 0.2s ease;
 }
 .new-btn button{
