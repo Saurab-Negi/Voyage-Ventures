@@ -5,8 +5,8 @@ body{
     min-height: 100vh;
 }
 .container{
-    flex: 1;
-} /* Above code is used so that our footer sticks to the bottom of our page */
+    flex: 1; /* Above code is used so that our footer sticks to the bottom of our page */
+}
 
 .heading{
     font-size: 3rem;
