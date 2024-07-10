@@ -6,6 +6,7 @@ body{
 }
 .container{
     flex: 1; /* Above code is used so that our footer sticks to the bottom of our page */
+    width: 100% !important;
 }
 
 .heading{
@@ -204,5 +205,5 @@ body{
     position: sticky;
     width: 100%;
     height: 100%;
-    z-index: -1; /* to ensure it's behind other content */
+    z-index: -1;
 }
